@@ -12,7 +12,7 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
     
     <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     
     <!-- SheetJS (xlsx) -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
@@ -28,19 +28,19 @@
         <div class="header-content">
             <h1 class="header-title">Sistema de Validação Automática de Planilhas Fiscais</h1>
             <div class="header-actions">
-                <button id="filters-btn" class="btn btn-outline-light me-2" data-bs-toggle="tooltip" title="Filtros">
-                    <i class="fas fa-filter"></i> Filtros
+                <button id="filters-btn" class="btn btn-outline-secondary me-2" data-bs-toggle="tooltip" title="Filtros">
+                    <i class="fas fa-filter me-1"></i> Filtros
                 </button>
-                <button id="rules-editor-btn" class="btn btn-outline-light me-2" data-bs-toggle="tooltip" title="Editor de Regras">
-                    <i class="fas fa-cog"></i> Regras
+                <button id="rules-editor-btn" class="btn btn-outline-secondary me-2" data-bs-toggle="tooltip" title="Editor de Regras">
+                    <i class="fas fa-cog me-1"></i> Regras
                 </button>
-                <button id="export-btn" class="btn btn-outline-light me-2" data-bs-toggle="tooltip" title="Exportar">
-                    <i class="fas fa-file-export"></i> Exportar
+                <button id="export-btn" class="btn btn-outline-secondary me-2" data-bs-toggle="tooltip" title="Exportar">
+                    <i class="fas fa-file-export me-1"></i> Exportar
                 </button>
-                <button id="share-btn" class="btn btn-outline-light me-2" data-bs-toggle="tooltip" title="Compartilhar">
-                    <i class="fas fa-share-alt"></i> Compartilhar
+                <button id="share-btn" class="btn btn-outline-secondary me-2" data-bs-toggle="tooltip" title="Compartilhar">
+                    <i class="fas fa-share-alt me-1"></i> Compartilhar
                 </button>
-                <button id="theme-toggle-btn" class="btn btn-icon btn-outline-light" data-bs-toggle="tooltip" title="Alternar Tema">
+                <button id="theme-toggle-btn" class="btn btn-icon btn-outline-secondary" data-bs-toggle="tooltip" title="Alternar Tema">
                     <i class="fas fa-moon"></i>
                 </button>
             </div>
@@ -48,7 +48,7 @@
     </header>
 
     <!-- Conteúdo principal -->
-    <main class="container mt-4">
+    <main class="container mt-4 flex-grow-1"> <!-- Added flex-grow-1 for sticky footer -->
         <!-- Seção de upload -->
         <section id="upload-section" class="card mb-4">
             <div class="card-body">
@@ -158,17 +158,6 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fechar"></button>
                 </div>
                 <div class="modal-body">
-                    <div class="mb-3">
-                        <label for="rule-set-list" class="form-label">Conjunto de Regras</label>
-                        <div class="input-group">
-                            <select id="rule-set-list" class="form-select">
-                                <option value="">Selecione um conjunto de regras</option>
-                            </select>
-                            <button id="new-rule-set-btn" class="btn btn-outline-primary">
-                                <i class="fas fa-plus"></i> Novo
-                            </button>
-                        </div>
-                    </div>
                     
                     <ul class="nav nav-tabs mb-3" id="rules-editor-tabs" role="tablist">
                         <li class="nav-item" role="presentation">
