@@ -55,6 +55,12 @@ document.addEventListener('DOMContentLoaded', function() {
             if (fileUploadText) {
                 fileUploadText.textContent = appState.fileName;
             }
+
+            // Adicionar classe de feedback visual ao file-upload
+            const fileUploadDiv = document.querySelector('.file-upload');
+            if (fileUploadDiv) {
+                fileUploadDiv.classList.add('file-selected-state');
+            }
             
             // Habilitar botão de validação
             validateBtn.removeAttribute('disabled');
@@ -129,6 +135,12 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Função para iniciar o processo de validação
     function startValidation() {
+        // Remover classe de feedback visual do file-upload
+        const fileUploadDiv = document.querySelector('.file-upload');
+        if (fileUploadDiv) {
+            fileUploadDiv.classList.remove('file-selected-state');
+        }
+
         // Mostrar seção de progresso e ocultar outras
         uploadSection.classList.add('d-none');
         progressSection.classList.remove('d-none');

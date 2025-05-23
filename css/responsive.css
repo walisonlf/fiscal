@@ -214,25 +214,23 @@
 /* Suporte para modo escuro do sistema */
 @media (prefers-color-scheme: dark) {
     body:not(.light-mode) {
-        --primary-color: #8ab4f8;
-        --primary-light: #aecbfa;
-        --primary-dark: #4285f4;
-        
-        --secondary-color: #9aa0a6;
-        --secondary-light: #bdc1c6;
-        --secondary-dark: #5f6368;
-        
-        --success-color: #81c995;
-        --warning-color: #fdd663;
-        --error-color: #f28b82;
-        --info-color: #8ab4f8;
-        
-        --background-color: #202124;
-        --surface-color: #292a2d;
-        --text-primary: #e8eaed;
-        --text-secondary: #9aa0a6;
-        --text-disabled: #5f6368;
-        --border-color: #5f6368;
+        --primary-color: #90caf9;
+        --primary-light: #c3fdff;
+        --primary-dark: #5d99c6;
+        --secondary-color: #ff80ab;
+        --secondary-light: #ffb2dd;
+        --secondary-dark: #c94f7c;
+        --success-color: #81c784;
+        --warning-color: #ffb74d;
+        --error-color: #e57373;
+        --info-color: #64b5f6;
+        --background-color: #121212;
+        --card-background: #1e1e1e; /* Added from styles.css [data-theme="dark"] */
+        --text-primary: #ffffff;
+        --text-secondary: #b0b0b0;
+        --border-color: #333333;
+        --hover-color: rgba(255, 255, 255, 0.08); /* Added from styles.css [data-theme="dark"] */
+        --shadow-color: rgba(0, 0, 0, 0.5); /* Added from styles.css [data-theme="dark"] */
     }
 }
 

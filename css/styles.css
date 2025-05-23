@@ -323,6 +323,14 @@ body {
     cursor: pointer;
 }
 
+.file-upload.file-selected-state {
+    border-color: var(--success-color);
+}
+
+.file-upload.file-selected-state .file-upload-icon {
+    color: var(--success-color);
+}
+
 /* Tabelas */
 .table-container {
     overflow-x: auto;
@@ -835,62 +843,36 @@ body {
 }
 
 /* Utilitários */
+/* Text color utilities using CSS variables are kept as they are theme-dependent. */
 .text-primary { color: var(--primary-color) !important; }
 .text-secondary { color: var(--text-secondary) !important; }
 .text-success { color: var(--success-color) !important; }
 .text-danger { color: var(--error-color) !important; }
 .text-warning { color: var(--warning-color) !important; }
 .text-info { color: var(--info-color) !important; }
-.text-muted { color: var(--text-secondary) !important; }
+.text-muted { color: var(--text-secondary) !important; } /* Kept: Uses theme variable, BS5 .text-muted is a specific gray. */
 
+/* Background color utilities using CSS variables or specific app colors are kept. */
 .bg-primary { background-color: var(--primary-color) !important; }
 .bg-secondary { background-color: var(--secondary-color) !important; }
 .bg-success { background-color: var(--success-color) !important; }
 .bg-danger { background-color: var(--error-color) !important; }
 .bg-warning { background-color: var(--warning-color) !important; }
 .bg-info { background-color: var(--info-color) !important; }
-.bg-light { background-color: var(--background-color) !important; }
-.bg-dark { background-color: #343a40 !important; }
+.bg-light { background-color: var(--background-color) !important; } /* Kept: Uses theme variable, BS5 .bg-light is #f8f9fa. */
+.bg-dark { background-color: #343a40 !important; } /* Kept: Specific color, BS5 .bg-dark is #212529. */
 
-.text-center { text-align: center !important; }
-.text-left { text-align: left !important; }
-.text-right { text-align: right !important; }
+/* Removed .text-center, .text-left, .text-right as Bootstrap 5 provides .text-center, .text-start, .text-end */
 
-.d-none { display: none !important; }
-.d-flex { display: flex !important; }
-.flex-column { flex-direction: column !important; }
-.justify-content-between { justify-content: space-between !important; }
-.justify-content-center { justify-content: center !important; }
-.align-items-center { align-items: center !important; }
-
-.m-0 { margin: 0 !important; }
-.mt-1 { margin-top: 0.25rem !important; }
-.mt-2 { margin-top: 0.5rem !important; }
-.mt-3 { margin-top: 1rem !important; }
-.mt-4 { margin-top: 1.5rem !important; }
-.mt-5 { margin-top: 3rem !important; }
-.mb-1 { margin-bottom: 0.25rem !important; }
-.mb-2 { margin-bottom: 0.5rem !important; }
-.mb-3 { margin-bottom: 1rem !important; }
-.mb-4 { margin-bottom: 1.5rem !important; }
-.mb-5 { margin-bottom: 3rem !important; }
-.ml-1 { margin-left: 0.25rem !important; }
-.ml-2 { margin-left: 0.5rem !important; }
-.ml-3 { margin-left: 1rem !important; }
-.mr-1 { margin-right: 0.25rem !important; }
-.mr-2 { margin-right: 0.5rem !important; }
-.mr-3 { margin-right: 1rem !important; }
-.mx-auto { margin-left: auto !important; margin-right: auto !important; }
-
-.p-0 { padding: 0 !important; }
-.p-1 { padding: 0.25rem !important; }
-.p-2 { padding: 0.5rem !important; }
-.p-3 { padding: 1rem !important; }
-.p-4 { padding: 1.5rem !important; }
-.p-5 { padding: 3rem !important; }
-
-.w-100 { width: 100% !important; }
-.h-100 { height: 100% !important; }
+/* Removed display, flex, spacing, and sizing utilities as Bootstrap 5 provides equivalents.
+   - .d-none, .d-flex, .flex-column, .justify-content-between, .justify-content-center, .align-items-center
+   - .m-0, .mt-1 to .mt-5, .mb-1 to .mb-5
+   - .ml-1, .ml-2, .ml-3 (use .ms-* from BS5)
+   - .mr-1, .mr-2, .mr-3 (use .me-* from BS5)
+   - .mx-auto
+   - .p-0, .p-1 to .p-5
+   - .w-100, .h-100
+*/
 
 /* Responsividade */
 @media (max-width: 768px) {
