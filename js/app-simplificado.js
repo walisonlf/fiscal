@@ -995,56 +995,59 @@ document.addEventListener('DOMContentLoaded', function() {
             const rules = window.FiscalRules.getAllRules();
             console.log('Regras carregadas:', rules);
             
-            // Preencher select de conjuntos de regras
-            const ruleSetList = document.getElementById('rule-set-list');
-            if (!ruleSetList) {
-                console.error('Elemento rule-set-list não encontrado');
-                return;
-            }
-            
-            ruleSetList.innerHTML = '<option value="">Selecione um conjunto de regras</option>';
-            
-            // Adicionar opções para cada tipo de regra
-            const ruleTypes = {
-                'cfop': 'Regras por CFOP',
-                'cst_icms': 'Regras por CST ICMS',
-                'cst_pis_cofins': 'Regras por CST PIS/COFINS'
-            };
-            
-            for (const type in ruleTypes) {
-                const option = document.createElement('option');
-                option.value = type;
-                option.textContent = ruleTypes[type];
-                ruleSetList.appendChild(option);
-            }
-            
-            // Evento de mudança no select de conjuntos de regras
-            ruleSetList.addEventListener('change', function() {
-                const type = this.value;
-                
-                if (!type) {
-                    document.getElementById('rules-editor-content').innerHTML = '<div class="text-muted">Selecione um conjunto de regras para editar.</div>';
-                    return;
-                }
-                
-                // Carregar regras do tipo selecionado
-                loadRulesByType(type, rules[type]);
+            // Regras carregadas
+            const rules = window.FiscalRules.getAllRules(); // Ensure rules are fetched early
+
+            // Configurar Tabs para carregar regras
+            const rulesEditorTabs = document.querySelectorAll('#rules-editor-tabs .nav-link');
+            let activeRuleType = 'cfop'; // Default active type
+
+            rulesEditorTabs.forEach(tab => {
+                tab.addEventListener('shown.bs.tab', function(event) { // Use 'shown.bs.tab' for when tab is fully shown
+                    activeRuleType = event.target.getAttribute('data-tab');
+                    if (activeRuleType) {
+                        loadRulesByType(activeRuleType, rules[activeRuleType]);
+                    } else {
+                         document.getElementById('rules-editor-content').innerHTML = '<div class="text-muted p-3">Tipo de regra não especificado na aba.</div>';
+                    }
+                });
             });
             
+            // Carregar regras para a aba ativa inicialmente (CFOP por padrão no HTML)
+            const initiallyActiveTab = document.querySelector('#rules-editor-tabs .nav-link.active');
+            if (initiallyActiveTab) {
+                activeRuleType = initiallyActiveTab.getAttribute('data-tab');
+                if (activeRuleType && rules[activeRuleType]) {
+                    loadRulesByType(activeRuleType, rules[activeRuleType]);
+                } else if (activeRuleType) {
+                     // Handle case where rule type might exist but has no rules
+                    loadRulesByType(activeRuleType, {});
+                } else {
+                    // Fallback if data-tab attribute is missing on active tab
+                    activeRuleType = 'cfop'; // default to cfop
+                    loadRulesByType(activeRuleType, rules[activeRuleType] || {});
+                }
+            } else {
+                 // Fallback if no tab is active by default
+                activeRuleType = 'cfop'; // default to cfop
+                loadRulesByType(activeRuleType, rules[activeRuleType] || {});
+            }
+
             // Evento de clique no botão de adicionar regra
             const addRuleBtn = document.getElementById('add-rule-btn');
             if (addRuleBtn) {
-                addRuleBtn.addEventListener('click', function() {
-                    const type = ruleSetList.value;
-                    
-                    if (!type) {
-                        showToast('Selecione um conjunto de regras primeiro.', 'warning');
-                        return;
-                    }
-                    
-                    // Abrir modal para adicionar regra
-                    showAddRuleModal(type);
-                });
+                // Remove previous listener if any to avoid multiple attachments
+                addRuleBtn.removeEventListener('click', handleAddRuleClick); // Named function for removal
+                addRuleBtn.addEventListener('click', handleAddRuleClick);
+            }
+            
+            function handleAddRuleClick() {
+                // activeRuleType is accessible from the outer scope
+                if (!activeRuleType) {
+                    showToast('Selecione um tipo de regra nas abas primeiro.', 'warning');
+                    return;
+                }
+                showAddRuleModal(activeRuleType);
             }
             
             // Evento de clique no botão de exportar regras
@@ -1117,12 +1120,10 @@ document.addEventListener('DOMContentLoaded', function() {
                 });
             }
             
-            // Inicialmente, mostrar mensagem para selecionar um conjunto de regras
-            const editorContent = document.getElementById('rules-editor-content');
-            if (editorContent) {
-                editorContent.innerHTML = '<div class="text-muted">Selecione um conjunto de regras para editar.</div>';
-            }
-            
+            // Initial state of editor content can be set here if needed, or rely on default tab load
+            // e.g., document.getElementById('rules-editor-content').innerHTML = '<div class="text-muted p-3">Selecione uma aba para ver as regras.</div>';
+            // However, the logic above should load the default tab content.
+
         } catch (error) {
             console.error('Erro ao carregar editor de regras:', error);
             showToast('Erro ao carregar editor de regras: ' + error.message, 'error');
@@ -1289,38 +1290,38 @@ document.addEventListener('DOMContentLoaded', function() {
             const index = container.children.length;
             
             const validationField = document.createElement('div');
-            validationField.className = 'card mb-2';
+            validationField.className = 'card mb-3 shadow-sm'; // Added shadow-sm for subtle depth
             validationField.innerHTML = `
-                <div class="card-body">
-                    <div class="d-flex justify-content-between align-items-center mb-2">
-                        <h6 class="mb-0">Validação #${index + 1}</h6>
-                        <button type="button" class="btn btn-sm btn-outline-danger remove-validation-btn">
-                            <i class="fas fa-times"></i>
-                        </button>
-                    </div>
-                    <div class="row mb-2">
-                        <div class="col">
+                <div class="card-header py-2 d-flex justify-content-between align-items-center">
+                    <h6 class="mb-0 fw-normal">Validação #${index + 1}</h6>
+                    <button type="button" class="btn btn-icon btn-sm btn-outline-danger remove-validation-btn" title="Remover Validação">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+                <div class="card-body pt-3">
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
                             <label class="form-label">Campo</label>
                             <input type="text" class="form-control validation-field" required>
                         </div>
-                        <div class="col">
+                        <div class="col-md-6 mb-3">
                             <label class="form-label">Mensagem</label>
                             <input type="text" class="form-control validation-message" required>
                         </div>
                     </div>
-                    <div class="row">
-                        <div class="col">
+                    <div class="row align-items-end"> {/* align-items-end to better align select with potentially taller input */}
+                        <div class="col-md-6 mb-3">
                             <label class="form-label">Tipo de Validação</label>
                             <select class="form-select validation-type">
-                                <option value="values">Lista de Valores</option>
+                                <option value="values" selected>Lista de Valores</option>
                                 <option value="condition">Condição</option>
                             </select>
                         </div>
-                        <div class="col validation-values-container">
+                        <div class="col-md-6 mb-3 validation-values-container">
                             <label class="form-label">Valores (separados por vírgula)</label>
                             <input type="text" class="form-control validation-values">
                         </div>
-                        <div class="col validation-condition-container d-none">
+                        <div class="col-md-6 mb-3 validation-condition-container d-none">
                             <label class="form-label">Condição</label>
                             <input type="text" class="form-control validation-condition" placeholder="Ex: value > 0">
                         </div>
@@ -1515,7 +1516,7 @@ document.addEventListener('DOMContentLoaded', function() {
             const index = container.children.length;
             
             const validationField = document.createElement('div');
-            validationField.className = 'card mb-2';
+            validationField.className = 'card mb-3 shadow-sm'; // Added shadow-sm for subtle depth
             
             // Determinar tipo de validação
             let validationType = 'values';
@@ -1533,36 +1534,36 @@ document.addEventListener('DOMContentLoaded', function() {
             }
             
             validationField.innerHTML = `
-                <div class="card-body">
-                    <div class="d-flex justify-content-between align-items-center mb-2">
-                        <h6 class="mb-0">Validação #${index + 1}</h6>
-                        <button type="button" class="btn btn-sm btn-outline-danger edit-remove-validation-btn">
-                            <i class="fas fa-times"></i>
-                        </button>
-                    </div>
-                    <div class="row mb-2">
-                        <div class="col">
+                <div class="card-header py-2 d-flex justify-content-between align-items-center">
+                    <h6 class="mb-0 fw-normal">Validação #${index + 1}</h6>
+                    <button type="button" class="btn btn-icon btn-sm btn-outline-danger edit-remove-validation-btn" title="Remover Validação">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+                <div class="card-body pt-3">
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
                             <label class="form-label">Campo</label>
                             <input type="text" class="form-control edit-validation-field" value="${validation ? validation.field : ''}" required>
                         </div>
-                        <div class="col">
+                        <div class="col-md-6 mb-3">
                             <label class="form-label">Mensagem</label>
                             <input type="text" class="form-control edit-validation-message" value="${validation ? validation.message : ''}" required>
                         </div>
                     </div>
-                    <div class="row">
-                        <div class="col">
+                    <div class="row align-items-end"> {/* align-items-end to better align select with potentially taller input */}
+                        <div class="col-md-6 mb-3">
                             <label class="form-label">Tipo de Validação</label>
                             <select class="form-select edit-validation-type">
                                 <option value="values" ${validationType === 'values' ? 'selected' : ''}>Lista de Valores</option>
                                 <option value="condition" ${validationType === 'condition' ? 'selected' : ''}>Condição</option>
                             </select>
                         </div>
-                        <div class="col edit-validation-values-container ${validationType === 'values' ? '' : 'd-none'}">
+                        <div class="col-md-6 mb-3 edit-validation-values-container ${validationType === 'values' ? '' : 'd-none'}">
                             <label class="form-label">Valores (separados por vírgula)</label>
                             <input type="text" class="form-control edit-validation-values" value="${values}">
                         </div>
-                        <div class="col edit-validation-condition-container ${validationType === 'condition' ? '' : 'd-none'}">
+                        <div class="col-md-6 mb-3 edit-validation-condition-container ${validationType === 'condition' ? '' : 'd-none'}">
                             <label class="form-label">Condição</label>
                             <input type="text" class="form-control edit-validation-condition" placeholder="Ex: value > 0" value="${condition}">
                         </div>

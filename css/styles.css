@@ -3,188 +3,262 @@
  * Estilos principais para o Sistema de Validação Automática de Planilhas Fiscais
  */
 
-/* Variáveis CSS para tema claro */
+/* === Nova Arquitetura de Variáveis CSS === */
+
 :root {
-    --primary-color: #1976d2;
-    --primary-light: #4791db;
-    --primary-dark: #115293;
-    --secondary-color: #f50057;
-    --secondary-light: #ff4081;
-    --secondary-dark: #c51162;
-    --success-color: #4caf50;
-    --warning-color: #ff9800;
-    --error-color: #f44336;
-    --info-color: #2196f3;
-    --background-color: #f5f7fa;
-    --card-background: #ffffff;
-    --text-primary: #212121;
-    --text-secondary: #757575;
-    --border-color: #e0e0e0;
-    --hover-color: rgba(0, 0, 0, 0.04);
-    --shadow-color: rgba(0, 0, 0, 0.1);
-    --transition-speed: 0.3s;
+    /* Paleta Principal - Claro */
+    --theme-primary-color: #2A6496; /* Azul profissional */
+    --theme-primary-color-rgb: 42, 100, 150;
+    --theme-primary-dark: #204D74;
+    --theme-primary-light: #357ABD;
+    
+    --theme-secondary-color: #6c757d; /* Cinza neutro */
+    --theme-secondary-color-rgb: 108, 117, 125;
+    --theme-secondary-dark: #5a6268;
+    --theme-secondary-light: #e9ecef;
+
+    --theme-accent-color: #4E9A06; /* Verde calmo para ações/destaques */
+    --theme-accent-color-rgb: 78, 154, 6;
+    --theme-accent-dark: #3B7A04;
+    --theme-accent-light: #65B807;
+
+    /* Cores de Feedback - Claro */
+    --theme-success-color: #28a745;
+    --theme-success-color-rgb: 40, 167, 69;
+    --theme-warning-color: #ffc107;
+    --theme-warning-color-rgb: 255, 193, 7;
+    --theme-error-color: #dc3545;
+    --theme-error-color-rgb: 220, 53, 69;
+    --theme-info-color: #17a2b8;
+    --theme-info-color-rgb: 23, 162, 184;
+
+    /* Superfícies e Texto - Claro */
+    --theme-background-color: #F8F9FA; /* Off-white */
+    --theme-surface-color: #FFFFFF;    /* Branco para cards, modais */
+    --theme-text-primary-color: #212529;  /* Cinza escuro para texto principal */
+    --theme-text-secondary-color: #495057; /* Cinza médio para texto secundário */
+    --theme-border-color: #DEE2E6;     /* Cinza claro para bordas */
+    --theme-hover-color: rgba(0, 0, 0, 0.04);
+
+    /* Tipografia */
+    --theme-font-family-sans-serif: 'Inter', 'Segoe UI', Roboto, Arial, sans-serif;
+    --theme-font-family-monospace: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+    --theme-base-font-size: 1rem; /* 16px */
+    --theme-line-height-base: 1.6;
+
+    /* Outros */
+    --theme-border-radius: 0.375rem; /* 6px - um pouco mais suave */
+    --theme-border-radius-sm: 0.25rem; /* 4px */
+    --theme-border-radius-lg: 0.5rem;  /* 8px */
+    
+    --theme-shadow-sm: 0 .125rem .25rem rgba(0,0,0,.075);
+    --theme-shadow-md: 0 .375rem .75rem rgba(0,0,0,.1); /* Sombra mais sutil para cards */
+    --theme-shadow-lg: 0 1rem 2.5rem rgba(0,0,0,.125);
+
+    --theme-transition-speed: 0.2s;
+    --theme-spacing-xs: 0.25rem;
+    --theme-spacing-sm: 0.5rem;
+    --theme-spacing-md: 1rem;
+    --theme-spacing-lg: 1.5rem;
+    --theme-spacing-xl: 2.5rem;
+
+    /* Variáveis antigas (para referência ou remoção gradual) - Mantendo por enquanto */
+    --primary-color: var(--theme-primary-color);
+    --primary-light: var(--theme-primary-light);
+    --primary-dark: var(--theme-primary-dark);
+    --secondary-color: var(--theme-secondary-color);
+    --success-color: var(--theme-success-color);
+    --warning-color: var(--theme-warning-color);
+    --error-color: var(--theme-error-color);
+    --info-color: var(--theme-info-color);
+    --background-color: var(--theme-background-color);
+    --card-background: var(--theme-surface-color);
+    --text-primary: var(--theme-text-primary-color);
+    --text-secondary: var(--theme-text-secondary-color);
+    --border-color: var(--theme-border-color);
+    --hover-color: var(--theme-hover-color);
+    --shadow-color: rgba(0, 0, 0, 0.1); /* Atualizar se necessário */
+    --transition-speed: var(--theme-transition-speed);
 }
 
-/* Variáveis CSS para tema escuro */
 [data-theme="dark"] {
-    --primary-color: #90caf9;
-    --primary-light: #c3fdff;
-    --primary-dark: #5d99c6;
-    --secondary-color: #ff80ab;
-    --secondary-light: #ffb2dd;
-    --secondary-dark: #c94f7c;
-    --success-color: #81c784;
-    --warning-color: #ffb74d;
-    --error-color: #e57373;
-    --info-color: #64b5f6;
-    --background-color: #121212;
-    --card-background: #1e1e1e;
-    --text-primary: #ffffff;
-    --text-secondary: #b0b0b0;
-    --border-color: #333333;
-    --hover-color: rgba(255, 255, 255, 0.08);
-    --shadow-color: rgba(0, 0, 0, 0.5);
+    /* Paleta Principal - Escuro */
+    --theme-primary-color: #58A6FF; 
+    --theme-primary-color-rgb: 88, 166, 255;
+    --theme-primary-dark: #388BFD;
+    --theme-primary-light: #79B8FF;
+
+    --theme-secondary-color: #8B949E; 
+    --theme-secondary-color-rgb: 139, 148, 158;
+    --theme-secondary-dark: #6E7681;
+    --theme-secondary-light: #ADBAC7;
+
+    --theme-accent-color: #56D364; 
+    --theme-accent-color-rgb: 86, 211, 100;
+    --theme-accent-dark: #3FB950;
+    --theme-accent-light: #70ED7E;
+
+    /* Cores de Feedback - Escuro */
+    --theme-success-color: #3fb950;
+    --theme-success-color-rgb: 63, 185, 80;
+    --theme-warning-color: #d29922;
+    --theme-warning-color-rgb: 210, 153, 34;
+    --theme-error-color: #f85149;
+    --theme-error-color-rgb: 248, 81, 73;
+    --theme-info-color: #388bfd;
+    --theme-info-color-rgb: 56, 139, 253;
+
+    /* Superfícies e Texto - Escuro */
+    --theme-background-color: #0D1117;    /* GitHub dark background */
+    --theme-surface-color: #161B22;       /* GitHub dark surface (cards) */
+    --theme-text-primary-color: #C9D1D9;  /* Cinza claro para texto principal */
+    --theme-text-secondary-color: #8B949E; /* Cinza médio para texto secundário */
+    --theme-border-color: #30363D;        /* Cinza escuro para bordas */
+    --theme-hover-color: rgba(255, 255, 255, 0.08);
+
+    /* Variáveis antigas - Mantendo por enquanto */
+    --primary-color: var(--theme-primary-color);
+    --primary-light: var(--theme-primary-light);
+    --primary-dark: var(--theme-primary-dark);
+    --secondary-color: var(--theme-secondary-color);
+    --success-color: var(--theme-success-color);
+    --warning-color: var(--theme-warning-color);
+    --error-color: var(--theme-error-color);
+    --info-color: var(--theme-info-color);
+    --background-color: var(--theme-background-color);
+    --card-background: var(--theme-surface-color);
+    --text-primary: var(--theme-text-primary-color);
+    --text-secondary: var(--theme-text-secondary-color);
+    --border-color: var(--theme-border-color);
+    --hover-color: var(--theme-hover-color);
+    --shadow-color: rgba(0, 0, 0, 0.5); /* Atualizar se necessário */
 }
 
-/* Estilos gerais */
+/* === Estilos Globais === */
 body {
-    font-family: 'Roboto', 'Segoe UI', Arial, sans-serif;
-    background-color: var(--background-color);
-    color: var(--text-primary);
+    font-family: var(--theme-font-family-sans-serif);
+    font-size: var(--theme-base-font-size);
+    font-weight: 400;
+    line-height: var(--theme-line-height-base);
+    background-color: var(--theme-background-color);
+    color: var(--theme-text-primary-color);
     margin: 0;
     padding: 0;
-    transition: background-color var(--transition-speed), color var(--transition-speed);
+    transition: background-color var(--theme-transition-speed), color var(--theme-transition-speed);
+    display: flex;
+    flex-direction: column;
     min-height: 100vh;
 }
 
-.container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 20px;
+main.container { /* Applied to main element with class container */
+    flex-grow: 1;
 }
+
+.container {
+    width: 100%;
+    max-width: 1280px; /* Um pouco mais largo */
+    margin: 0 auto;
+    padding: var(--theme-spacing-md) var(--theme-spacing-lg);
+}
+
+/* Tipografia Base */
+h1, h2, h3, h4, h5, h6 {
+    font-family: var(--theme-font-family-sans-serif);
+    color: var(--theme-text-primary-color);
+    margin-top: 0;
+    margin-bottom: var(--theme-spacing-sm);
+    font-weight: 600; /* Um pouco mais bold por padrão */
+    line-height: 1.3;
+}
+
+h1 { font-size: 2.25rem; font-weight: 700; } /* 36px */
+h2 { font-size: 1.875rem; font-weight: 600; } /* 30px */
+h3 { font-size: 1.5rem; font-weight: 600; }   /* 24px */
+h4 { font-size: 1.25rem; font-weight: 500; }  /* 20px */
+h5 { font-size: 1.125rem; font-weight: 500; } /* 18px */
+h6 { font-size: 1rem; font-weight: 500; }     /* 16px */
+
+p {
+    margin-top: 0;
+    margin-bottom: var(--theme-spacing-md);
+}
+
+a {
+    color: var(--theme-primary-color);
+    text-decoration: none;
+    transition: color var(--theme-transition-speed) ease-in-out;
+}
+
+a:hover {
+    color: var(--theme-primary-dark);
+    text-decoration: underline;
+}
+
+/* Utilitários de Texto - sobrescrever os antigos se necessário */
+.text-primary { color: var(--theme-primary-color) !important; }
+.text-secondary { color: var(--theme-text-secondary-color) !important; } /* Usar o secundário de texto */
+.text-success { color: var(--theme-success-color) !important; }
+.text-danger { color: var(--theme-error-color) !important; }
+.text-warning { color: var(--theme-warning-color) !important; }
+.text-info { color: var(--theme-info-color) !important; }
+.text-muted { color: var(--theme-text-secondary-color) !important; opacity: 0.85; }
+
+
+/* === Componentes Principais === */
 
 /* Cabeçalho */
 .header {
-    background-color: var(--primary-color);
-    color: white;
-    padding: 15px 0;
-    box-shadow: 0 2px 4px var(--shadow-color);
+    background-color: var(--theme-surface-color);
+    color: var(--theme-text-primary-color);
+    padding: var(--theme-spacing-sm) 0; /* Reduced padding */
+    border-bottom: 1px solid var(--theme-border-color);
+    box-shadow: var(--theme-shadow-sm);
     position: sticky;
     top: 0;
-    z-index: 1000;
-    transition: background-color var(--transition-speed);
+    z-index: 1030; /* Bootstrap's standard sticky z-index is 1020, header should be above */
+    transition: background-color var(--theme-transition-speed), border-color var(--theme-transition-speed);
 }
 
 .header-content {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 0 20px;
+    /* padding is handled by .container which is now a direct child or .header itself if full-width */
 }
 
 .header-title {
-    font-size: 1.5rem;
-    font-weight: 500;
+    font-size: 1.25rem; /* Slightly reduced */
+    font-weight: 600;   /* Increased weight */
+    color: var(--theme-text-primary-color);
     margin: 0;
 }
 
 .header-actions {
     display: flex;
-    gap: 10px;
-}
-
-/* Botões */
-.btn {
-    border-radius: 4px;
-    font-weight: 500;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-    transition: all 0.2s ease-in-out;
-    cursor: pointer;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    gap: 8px;
-}
-
-.btn:hover {
-    transform: translateY(-1px);
-    box-shadow: 0 4px 8px var(--shadow-color);
-}
-
-.btn:active {
-    transform: translateY(0);
-    box-shadow: 0 2px 4px var(--shadow-color);
-}
-
-.btn-primary {
-    background-color: var(--primary-color);
-    color: white;
-    border: none;
-}
-
-.btn-primary:hover {
-    background-color: var(--primary-dark);
-}
-
-.btn-secondary {
-    background-color: var(--secondary-color);
-    color: white;
-    border: none;
-}
-
-.btn-secondary:hover {
-    background-color: var(--secondary-dark);
-}
-
-.btn-success {
-    background-color: var(--success-color);
-    color: white;
-    border: none;
-}
-
-.btn-success:hover {
-    background-color: #388e3c;
-}
-
-.btn-outline-primary {
-    background-color: transparent;
-    color: var(--primary-color);
-    border: 1px solid var(--primary-color);
-}
-
-.btn-outline-primary:hover {
-    background-color: var(--primary-color);
-    color: white;
-}
-
-.btn-icon {
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    padding: 0;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
+    align-items: center; /* Align items vertically */
+    gap: var(--theme-spacing-sm); /* Consistent spacing */
 }
 
 /* Cards */
 .card {
-    background-color: var(--card-background);
-    border-radius: 8px;
-    box-shadow: 0 2px 10px var(--shadow-color);
-    margin-bottom: 20px;
-    overflow: hidden;
-    transition: all var(--transition-speed);
+    background-color: var(--theme-surface-color);
+    border: 1px solid var(--theme-border-color);
+    border-radius: var(--theme-border-radius-lg); /* Larger radius for softer look */
+    box-shadow: var(--theme-shadow-md);
+    margin-bottom: var(--theme-spacing-lg);
+    overflow: hidden; /* Ensures content respects border-radius */
+    transition: all var(--theme-transition-speed) ease-in-out;
 }
 
 .card:hover {
-    box-shadow: 0 4px 20px var(--shadow-color);
+    box-shadow: var(--theme-shadow-lg); /* More pronounced shadow on hover */
+    transform: translateY(-2px); /* Subtle lift effect */
 }
 
 .card-header {
-    padding: 16px 20px;
-    border-bottom: 1px solid var(--border-color);
+    background-color: transparent; /* Cleaner look */
+    border-bottom: 1px solid var(--theme-border-color);
+    padding: var(--theme-spacing-md) var(--theme-spacing-lg);
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -192,88 +266,286 @@ body {
 
 .card-title {
     margin: 0;
-    font-size: 1.25rem;
-    font-weight: 500;
-    color: var(--text-primary);
+    font-size: 1.2rem; /* Adjusted size */
+    font-weight: 600;
+    color: var(--theme-text-primary-color);
 }
 
 .card-body {
-    padding: 20px;
+    padding: var(--theme-spacing-lg);
 }
 
 .card-footer {
-    padding: 16px 20px;
-    border-top: 1px solid var(--border-color);
-    background-color: rgba(0, 0, 0, 0.02);
+    padding: var(--theme-spacing-md) var(--theme-spacing-lg);
+    border-top: 1px solid var(--theme-border-color);
+    background-color: var(--theme-background-color); /* Slight contrast from card body */
+    color: var(--theme-text-secondary-color);
+    font-size: 0.9rem;
+}
+
+
+/* Botões */
+.btn {
+    border-radius: var(--theme-border-radius);
+    font-weight: 500;
+    text-transform: none; /* Modern buttons are often not uppercase */
+    letter-spacing: normal; /* Reset from previous style */
+    transition: all var(--theme-transition-speed) ease-in-out;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--theme-spacing-xs); /* Consistent spacing for icons */
+    padding: 0.625rem 1.25rem; /* Slightly larger padding */
+    border: 1px solid transparent; /* Base border */
+    box-shadow: var(--theme-shadow-sm);
+}
+
+.btn:hover {
+    /* transform: translateY(-1px); // Removing transform for a flatter interaction */
+    filter: brightness(0.95); /* Subtle darkening on hover */
+    box-shadow: var(--theme-shadow-md);
+}
+
+.btn:active {
+    transform: translateY(0); /* Keep for click feedback */
+    filter: brightness(0.9);
+    box-shadow: var(--theme-shadow-sm);
+}
+
+.btn:focus, .btn:focus-visible {
+    outline: 0;
+    box-shadow: 0 0 0 0.2rem rgba(var(--theme-primary-color-rgb), 0.25); /* Focus ring using primary color */
+}
+
+/* Primary Button */
+.btn-primary {
+    background-color: var(--theme-primary-color);
+    border-color: var(--theme-primary-color);
+    color: #fff;
+}
+
+.btn-primary:hover {
+    background-color: var(--theme-primary-dark);
+    border-color: var(--theme-primary-dark);
+    color: #fff; /* Ensure text color remains consistent */
+}
+
+.btn-primary:focus, .btn-primary:focus-visible {
+    box-shadow: 0 0 0 0.2rem rgba(var(--theme-primary-color-rgb), 0.5);
+}
+
+/* Secondary Button (was btn-outline-light, now adapted to be general secondary) */
+.btn-secondary {
+    background-color: var(--theme-secondary-color);
+    border-color: var(--theme-secondary-color);
+    color: #fff;
+}
+
+.btn-secondary:hover {
+    background-color: var(--theme-secondary-dark);
+    border-color: var(--theme-secondary-dark);
+    color: #fff;
+}
+.btn-secondary:focus, .btn-secondary:focus-visible {
+    box-shadow: 0 0 0 0.2rem rgba(var(--theme-secondary-color-rgb), 0.5);
+}
+
+/* Outline Secondary Button (for header buttons, previously btn-outline-light) */
+.btn-outline-secondary {
+    background-color: transparent;
+    color: var(--theme-secondary-color);
+    border-color: var(--theme-secondary-color); /* Use a theme border color or secondary */
+}
+
+.btn-outline-secondary:hover {
+    background-color: var(--theme-secondary-color);
+    color: #fff; /* Or var(--theme-surface-color) if on dark bg */
+    border-color: var(--theme-secondary-color);
+}
+.btn-outline-secondary:focus, .btn-outline-secondary:focus-visible {
+    box-shadow: 0 0 0 0.2rem rgba(var(--theme-secondary-color-rgb), 0.3);
+}
+
+
+/* Success Button */
+.btn-success {
+    background-color: var(--theme-success-color);
+    border-color: var(--theme-success-color);
+    color: #fff;
+}
+
+.btn-success:hover {
+    background-color: var(--theme-success-dark, darken(var(--theme-success-color), 10%)); /* Define --theme-success-dark or use darken */
+    border-color: var(--theme-success-dark, darken(var(--theme-success-color), 10%));
+    color: #fff;
+}
+/* Add dark variable for success for consistency */
+:root { --theme-success-dark: #1e7e34; }
+[data-theme="dark"] { --theme-success-dark: #298739; }
+
+
+/* Generic Outline Button (example, if .btn-outline-primary was used elsewhere) */
+.btn-outline-primary {
+    background-color: transparent;
+    color: var(--theme-primary-color);
+    border-color: var(--theme-primary-color);
+}
+
+.btn-outline-primary:hover {
+    background-color: var(--theme-primary-color);
+    color: #fff;
+}
+
+/* Icon Button */
+.btn-icon {
+    width: auto; /* Allow content to size */
+    height: auto;
+    min-width: 2.5rem; /* Ensure a decent tap target */
+    min-height: 2.5rem;
+    border-radius: 50%;
+    padding: var(--theme-spacing-xs); /* Adjust padding for icons */
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    line-height: 1; /* Ensure icon is centered */
+}
+.btn-icon i {
+    font-size: 1rem; /* Adjust icon size if needed */
+    margin: 0; /* Reset any margin on icon itself */
+}
+
+
+/* Cards */
+.card {
+    background-color: var(--card-background);
+    border-radius: var(--theme-border-radius-lg); /* Larger radius for softer look */
+    box-shadow: var(--theme-shadow-md);
+    margin-bottom: var(--theme-spacing-lg);
+    overflow: hidden; /* Ensures content respects border-radius */
+    transition: all var(--theme-transition-speed) ease-in-out;
+}
+
+.card:hover {
+    box-shadow: var(--theme-shadow-lg); /* More pronounced shadow on hover */
+    transform: translateY(-2px); /* Subtle lift effect */
+}
+
+.card-header {
+    background-color: transparent; /* Cleaner look */
+    border-bottom: 1px solid var(--theme-border-color);
+    padding: var(--theme-spacing-md) var(--theme-spacing-lg);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.card-title {
+    margin: 0;
+    font-size: 1.2rem; /* Adjusted size */
+    font-weight: 600;
+    color: var(--theme-text-primary-color);
+}
+
+.card-body {
+    padding: var(--theme-spacing-lg);
+}
+
+.card-footer {
+    padding: var(--theme-spacing-md) var(--theme-spacing-lg);
+    border-top: 1px solid var(--theme-border-color);
+    background-color: var(--theme-background-color); /* Slight contrast from card body */
+    color: var(--theme-text-secondary-color);
+    font-size: 0.9rem;
 }
 
 /* Formulários */
-.form-group {
-    margin-bottom: 20px;
+.form-group { /* Retain if used for specific layouts, but prefer Bootstrap's .mb-3 or similar */
+    margin-bottom: var(--theme-spacing-md);
 }
 
 .form-label {
-    display: block;
-    margin-bottom: 8px;
+    display: block; /* Ensures it takes full width */
+    margin-bottom: var(--theme-spacing-sm); /* Consistent spacing */
     font-weight: 500;
-    color: var(--text-primary);
+    color: var(--theme-text-primary-color); /* Labels are important, use primary text color */
+    font-size: 0.9rem; /* Slightly smaller label */
 }
 
-.form-control {
+.form-control,
+.form-select {
     width: 100%;
-    padding: 10px 12px;
-    font-size: 1rem;
-    line-height: 1.5;
-    color: var(--text-primary);
-    background-color: var(--card-background);
-    border: 1px solid var(--border-color);
-    border-radius: 4px;
-    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+    padding: 0.625rem 1rem; /* Consistent padding with buttons */
+    font-size: var(--theme-base-font-size);
+    font-weight: 400;
+    line-height: var(--theme-line-height-base);
+    color: var(--theme-text-primary-color);
+    background-color: var(--theme-surface-color);
+    background-clip: padding-box;
+    border: 1px solid var(--theme-border-color);
+    appearance: none; /* Remove default system appearance */
+    border-radius: var(--theme-border-radius);
+    transition: border-color var(--theme-transition-speed) ease-in-out, box-shadow var(--theme-transition-speed) ease-in-out;
 }
 
-.form-control:focus {
-    border-color: var(--primary-color);
+.form-control:focus,
+.form-select:focus {
+    border-color: var(--theme-primary-color);
     outline: 0;
-    box-shadow: 0 0 0 0.2rem rgba(25, 118, 210, 0.25);
+    box-shadow: 0 0 0 0.2rem rgba(var(--theme-primary-color-rgb), 0.25);
 }
 
 .form-select {
-    display: block;
-    width: 100%;
-    padding: 10px 12px;
-    font-size: 1rem;
-    line-height: 1.5;
-    color: var(--text-primary);
-    background-color: var(--card-background);
-    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3e%3cpath fill='none' stroke='%23343a40' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M2 5l6 6 6-6'/%3e%3c/svg%3e");
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3e%3cpath fill='none' stroke='%23343a40' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M2 5l6 6 6-6'/%3e%3c/svg%3e"); /* Default BS5 arrow */
     background-repeat: no-repeat;
-    background-position: right 0.75rem center;
+    background-position: right 1rem center;
     background-size: 16px 12px;
-    border: 1px solid var(--border-color);
-    border-radius: 4px;
-    appearance: none;
-    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+[data-theme="dark"] .form-select {
+     background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3e%3cpath fill='none' stroke='%23C9D1D9' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M2 5l6 6 6-6'/%3e%3c/svg%3e"); /* Dark theme arrow */
 }
 
-.form-select:focus {
-    border-color: var(--primary-color);
-    outline: 0;
-    box-shadow: 0 0 0 0.2rem rgba(25, 118, 210, 0.25);
-}
 
 .form-check {
-    display: flex;
+    display: flex; /* BS5 default is block, flex can be good for alignment */
     align-items: center;
-    margin-bottom: 10px;
+    margin-bottom: var(--theme-spacing-sm);
+    padding-left: 0; /* Remove default padding if custom aligning input */
 }
 
 .form-check-input {
-    margin-right: 10px;
+    /* margin-right: var(--theme-spacing-sm); // Original style */
+    /* BS5 structure: input then label. Spacing usually handled by label's margin or BS5 classes if input is not floated. */
+    /* Default BS5 places input inside label or uses sibling combinators. Here, assuming direct siblings. */
+    width: 1.25em;
+    height: 1.25em;
+    margin-top: 0.1em; /* Align better with text */
+    vertical-align: top;
+    border: 1px solid var(--theme-border-color);
+    border-radius: var(--theme-border-radius-sm);
+}
+.form-check-input:focus {
+    border-color: var(--theme-primary-color);
+    outline: 0;
+    box-shadow: 0 0 0 0.2rem rgba(var(--theme-primary-color-rgb), 0.25);
+}
+.form-check-input[type="checkbox"] {
+    border-radius: var(--theme-border-radius-sm);
+}
+.form-check-input[type="radio"] {
+    border-radius: 50%;
+}
+.form-check-input:checked {
+    background-color: var(--theme-primary-color);
+    border-color: var(--theme-primary-color);
 }
 
 .form-check-label {
-    margin-bottom: 0;
+    margin-left: var(--theme-spacing-sm); /* Space between input and label */
+    color: var(--theme-text-primary-color);
+    font-weight: 400;
 }
+
 
 /* Upload de arquivo */
 .file-upload {
@@ -281,35 +553,43 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 40px;
-    border: 2px dashed var(--border-color);
-    border-radius: 8px;
-    background-color: var(--card-background);
-    transition: all var(--transition-speed);
+    justify-content: center; /* Center content vertically */
+    padding: var(--theme-spacing-xl) var(--theme-spacing-lg); /* Generous padding */
+    border: 2px dashed var(--theme-border-color);
+    border-radius: var(--theme-border-radius-lg); /* Consistent with cards */
+    background-color: var(--theme-background-color); /* Slightly different from surface for contrast */
+    transition: all var(--theme-transition-speed) ease-in-out;
     cursor: pointer;
+    min-height: 200px; /* Ensure a decent size */
 }
 
 .file-upload:hover {
-    border-color: var(--primary-color);
-    background-color: rgba(25, 118, 210, 0.05);
+    border-color: var(--theme-primary-color);
+    background-color: var(--theme-surface-color); /* Change to surface on hover for subtle effect */
 }
 
-.file-upload-icon {
-    font-size: 48px;
-    color: var(--primary-color);
-    margin-bottom: 16px;
+.file-upload-icon { /* This is the div containing the icon */
+    font-size: 2.5rem; /* Larger icon */
+    color: var(--theme-secondary-color); /* Use secondary color for icon */
+    margin-bottom: var(--theme-spacing-md);
+    transition: color var(--theme-transition-speed) ease-in-out;
 }
+.file-upload-icon i { /* If the icon itself is an <i> tag */
+    display: block;
+}
+
 
 .file-upload-text {
-    font-size: 1.1rem;
-    color: var(--text-primary);
-    margin-bottom: 8px;
+    font-size: 1.125rem; /* Slightly larger */
+    font-weight: 500;
+    color: var(--theme-text-primary-color);
+    margin-bottom: var(--theme-spacing-xs);
     text-align: center;
 }
 
 .file-upload-hint {
     font-size: 0.9rem;
-    color: var(--text-secondary);
+    color: var(--theme-text-secondary-color);
     text-align: center;
 }
 
@@ -324,12 +604,17 @@ body {
 }
 
 .file-upload.file-selected-state {
-    border-color: var(--success-color);
+    border-color: var(--theme-success-color);
+    background-color: var(--theme-surface-color); /* Keep surface color for consistency */
 }
 
 .file-upload.file-selected-state .file-upload-icon {
-    color: var(--success-color);
+    color: var(--theme-success-color);
 }
+.file-upload.file-selected-state .file-upload-text {
+    color: var(--theme-success-color); /* Change text color as well */
+}
+
 
 /* Tabelas */
 .table-container {
@@ -695,21 +980,47 @@ body {
 
 .rule-header {
     padding: 12px 16px;
-    background-color: rgba(0, 0, 0, 0.02);
-    border-bottom: 1px solid var(--border-color);
+    background-color: rgba(0, 0, 0, 0.02); /* This might be overridden by new theme if .card-header is used */
+    border-bottom: 1px solid var(--theme-border-color);
     display: flex;
     justify-content: space-between;
     align-items: center;
 }
 
-.rule-title {
+.rule-title { /* This class might not be used anymore if card-title is preferred */
     margin: 0;
-    font-weight: 500;
+    font-weight: 600; /* Align with new card-title weight */
+    color: var(--theme-text-primary-color);
 }
 
-.rule-body {
-    padding: 16px;
+.rule-body { /* This class might not be used anymore if card-body is preferred */
+    padding: var(--theme-spacing-md);
 }
+
+/* Styles for the Rules Editor Modal Content Area */
+#rules-editor-content {
+    overflow-y: auto;
+    max-height: 450px; /* Adjust as needed, e.g., 50vh or other fixed value */
+    padding: var(--theme-spacing-xs); /* Small padding if content inside is cards/tables already with padding */
+    border: 1px solid var(--theme-border-color); /* Optional: border around scrollable area */
+    border-radius: var(--theme-border-radius);
+    margin-bottom: var(--theme-spacing-md); /* Space before Add Rule button */
+}
+
+/* Ensure table within rules editor content looks good */
+#rules-editor-content .table {
+    margin-bottom: 0; /* Remove bottom margin if it's the only/last element */
+}
+#rules-editor-content .table th {
+    background-color: var(--theme-surface-color); /* Match header/surface colors */
+    color: var(--theme-text-primary-color);
+    font-weight: 600;
+    position: sticky; /* Sticky header for scrollable table body */
+    top: 0;
+    z-index: 10; /* Ensure header is above scrolling content */
+    box-shadow: 0 2px 2px -1px rgba(0,0,0,0.1); /* Subtle shadow for sticky header */
+}
+
 
 .condition-item {
     margin-bottom: 10px;
@@ -1091,4 +1402,18 @@ body {
         background-color: white !important;
         color: black !important;
     }
+}
+
+/* === Footer === */
+footer.text-center { /* Targeting the specific footer in index.html */
+    background-color: var(--theme-surface-color);
+    border-top: 1px solid var(--theme-border-color);
+    padding: var(--theme-spacing-lg) 0;
+    color: var(--theme-text-secondary-color);
+    font-size: 0.9rem;
+    margin-top: auto; /* Pushes footer to bottom if content is short */
+}
+
+footer.text-center p {
+    margin-bottom: 0;
 }
