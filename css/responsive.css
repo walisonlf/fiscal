@@ -1,0 +1,280 @@
+/* 
+ * responsive.css
+ * Estilos responsivos para o Sistema de Validação Automática de Planilhas Fiscais
+ */
+
+/* Tablets e dispositivos menores */
+@media (max-width: 992px) {
+    .container {
+        padding: var(--spacing-md);
+        max-width: 100%;
+    }
+    
+    .header {
+        padding: var(--spacing-md);
+    }
+    
+    .header-title {
+        font-size: var(--font-size-lg);
+    }
+    
+    .summary-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .filter-fields {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/* Dispositivos móveis */
+@media (max-width: 768px) {
+    .header {
+        flex-direction: column;
+        gap: var(--spacing-md);
+        padding: var(--spacing-md) var(--spacing-sm);
+    }
+    
+    .header-actions {
+        width: 100%;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: var(--spacing-sm);
+    }
+    
+    .btn {
+        padding: var(--spacing-xs) var(--spacing-md);
+    }
+    
+    .card {
+        padding: var(--spacing-md);
+    }
+    
+    .summary-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .filter-fields {
+        grid-template-columns: 1fr;
+    }
+    
+    .rules-editor-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: var(--spacing-md);
+    }
+    
+    .rules-editor-actions {
+        width: 100%;
+        justify-content: space-between;
+    }
+    
+    .rules-editor-tabs {
+        flex-wrap: wrap;
+    }
+    
+    .tab-button {
+        flex: 1;
+        text-align: center;
+        min-width: 120px;
+    }
+    
+    .advanced-table {
+        font-size: var(--font-size-sm);
+    }
+    
+    .advanced-table th,
+    .advanced-table td {
+        padding: var(--spacing-xs) var(--spacing-sm);
+    }
+    
+    .advanced-table-footer {
+        flex-direction: column;
+        gap: var(--spacing-sm);
+    }
+    
+    .pagination {
+        width: 100%;
+        justify-content: center;
+    }
+    
+    .page-size-selector {
+        width: 100%;
+        justify-content: center;
+    }
+    
+    .toast {
+        min-width: auto;
+        max-width: 90%;
+    }
+}
+
+/* Dispositivos móveis pequenos */
+@media (max-width: 480px) {
+    .header-title {
+        font-size: var(--font-size-md);
+        text-align: center;
+    }
+    
+    .btn-sm {
+        padding: var(--spacing-xs) var(--spacing-sm);
+        font-size: var(--font-size-xs);
+    }
+    
+    .file-upload-label {
+        flex-direction: column;
+        text-align: center;
+        gap: var(--spacing-sm);
+    }
+    
+    .file-upload-icon {
+        margin: 0 auto;
+    }
+    
+    .file-upload-text {
+        text-align: center;
+    }
+    
+    .summary-header {
+        flex-direction: column;
+        gap: var(--spacing-sm);
+        align-items: flex-start;
+    }
+    
+    .summary-status {
+        align-self: flex-start;
+    }
+    
+    .warning-header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    
+    .filter-tag {
+        width: 100%;
+    }
+    
+    .active-filters-tags {
+        flex-direction: column;
+    }
+    
+    .column-mapping-header {
+        flex-direction: column;
+        gap: var(--spacing-xs);
+        align-items: flex-start;
+    }
+    
+    .column-actions {
+        width: 100%;
+        justify-content: flex-start;
+    }
+    
+    .cst-rule-header {
+        flex-direction: column;
+        gap: var(--spacing-xs);
+        align-items: flex-start;
+    }
+    
+    .cst-actions {
+        width: 100%;
+        justify-content: flex-start;
+    }
+}
+
+/* Dispositivos de alta resolução */
+@media (min-width: 1200px) {
+    .container {
+        max-width: 1140px;
+    }
+    
+    .card {
+        padding: var(--spacing-xl);
+    }
+    
+    .filter-fields {
+        grid-template-columns: repeat(4, 1fr);
+    }
+}
+
+/* Orientação paisagem em dispositivos móveis */
+@media (max-height: 500px) and (orientation: landscape) {
+    .header {
+        position: static;
+    }
+    
+    .footer {
+        position: static;
+    }
+    
+    .main-content {
+        margin: var(--spacing-md) 0;
+    }
+}
+
+/* Suporte para modo escuro do sistema */
+@media (prefers-color-scheme: dark) {
+    body:not(.light-mode) {
+        --primary-color: #8ab4f8;
+        --primary-light: #aecbfa;
+        --primary-dark: #4285f4;
+        
+        --secondary-color: #9aa0a6;
+        --secondary-light: #bdc1c6;
+        --secondary-dark: #5f6368;
+        
+        --success-color: #81c995;
+        --warning-color: #fdd663;
+        --error-color: #f28b82;
+        --info-color: #8ab4f8;
+        
+        --background-color: #202124;
+        --surface-color: #292a2d;
+        --text-primary: #e8eaed;
+        --text-secondary: #9aa0a6;
+        --text-disabled: #5f6368;
+        --border-color: #5f6368;
+    }
+}
+
+/* Suporte para redução de movimento */
+@media (prefers-reduced-motion: reduce) {
+    * {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+}
+
+/* Suporte para alto contraste */
+@media (prefers-contrast: high) {
+    :root {
+        --primary-color: #0000ff;
+        --primary-dark: #0000cc;
+        --error-color: #ff0000;
+        --success-color: #008000;
+        --warning-color: #ff8000;
+        --border-color: #000000;
+        --text-primary: #000000;
+        --text-secondary: #333333;
+    }
+    
+    body.dark-mode {
+        --primary-color: #80a0ff;
+        --error-color: #ff8080;
+        --success-color: #80ff80;
+        --warning-color: #ffcc80;
+        --border-color: #ffffff;
+        --text-primary: #ffffff;
+        --text-secondary: #cccccc;
+    }
+    
+    .btn,
+    .card,
+    .filter-tag,
+    .summary-item,
+    .advanced-table th,
+    .advanced-table td {
+        border: 1px solid var(--border-color);
+    }
+}

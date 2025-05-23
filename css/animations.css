@@ -1,0 +1,283 @@
+/* 
+ * animations.css
+ * Animações e transições para o Sistema de Validação Automática de Planilhas Fiscais
+ */
+
+/* Animação de fade in */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+/* Animação de slide in */
+@keyframes slideInRight {
+    from {
+        transform: translateX(30px);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+@keyframes slideInLeft {
+    from {
+        transform: translateX(-30px);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+@keyframes slideInUp {
+    from {
+        transform: translateY(30px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+@keyframes slideInDown {
+    from {
+        transform: translateY(-30px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+/* Animação de pulse */
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.05);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+/* Animação de shake */
+@keyframes shake {
+    0%, 100% {
+        transform: translateX(0);
+    }
+    10%, 30%, 50%, 70%, 90% {
+        transform: translateX(-5px);
+    }
+    20%, 40%, 60%, 80% {
+        transform: translateX(5px);
+    }
+}
+
+/* Animação de rotação */
+@keyframes rotate {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* Animação de progresso */
+@keyframes progress {
+    from {
+        width: 0%;
+    }
+    to {
+        width: 100%;
+    }
+}
+
+/* Classes de animação */
+.animate-fade-in {
+    animation: fadeIn 0.5s ease-in-out;
+}
+
+.animate-slide-in-right {
+    animation: slideInRight 0.5s ease-out;
+}
+
+.animate-slide-in-left {
+    animation: slideInLeft 0.5s ease-out;
+}
+
+.animate-slide-in-up {
+    animation: slideInUp 0.5s ease-out;
+}
+
+.animate-slide-in-down {
+    animation: slideInDown 0.5s ease-out;
+}
+
+.animate-pulse {
+    animation: pulse 1s ease-in-out infinite;
+}
+
+.animate-shake {
+    animation: shake 0.5s ease-in-out;
+}
+
+.animate-rotate {
+    animation: rotate 1s linear infinite;
+}
+
+/* Aplicação de animações em elementos específicos */
+.card {
+    animation: fadeIn 0.5s ease-in-out;
+}
+
+.header-title {
+    animation: slideInLeft 0.5s ease-out;
+}
+
+.header-actions {
+    animation: slideInRight 0.5s ease-out;
+}
+
+.file-upload-label:hover .file-upload-icon {
+    animation: pulse 1s ease-in-out infinite;
+}
+
+.btn-primary:active {
+    animation: pulse 0.3s ease-in-out;
+}
+
+.progress-bar.active {
+    animation: progress 2s linear;
+}
+
+.toast.show {
+    animation: slideInRight 0.3s ease-out;
+}
+
+.toast.hide {
+    animation: slideInRight 0.3s ease-out reverse;
+}
+
+.summary-item {
+    animation: fadeIn 0.5s ease-in-out;
+    animation-fill-mode: both;
+}
+
+/* Atraso sequencial para itens de resumo */
+.summary-item:nth-child(1) {
+    animation-delay: 0.1s;
+}
+
+.summary-item:nth-child(2) {
+    animation-delay: 0.2s;
+}
+
+.summary-item:nth-child(3) {
+    animation-delay: 0.3s;
+}
+
+.summary-item:nth-child(4) {
+    animation-delay: 0.4s;
+}
+
+/* Animação para ícone de carregamento */
+.loading-icon {
+    animation: rotate 1s linear infinite;
+}
+
+/* Transições suaves para elementos interativos */
+.btn,
+.filter-field,
+.tab-button,
+.pagination-btn,
+.file-upload-label {
+    transition: all 0.2s ease-in-out;
+}
+
+/* Efeito hover com transição suave */
+.btn:hover,
+.filter-field:focus,
+.tab-button:hover,
+.pagination-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Efeito de clique com transição suave */
+.btn:active,
+.tab-button:active,
+.pagination-btn:active {
+    transform: translateY(1px);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Animação para o modo escuro */
+.dark-mode-transition {
+    transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out, border-color 0.3s ease-in-out;
+}
+
+/* Animação para o ícone de modo escuro */
+#darkModeToggle i {
+    transition: transform 0.3s ease-in-out;
+}
+
+#darkModeToggle:hover i {
+    transform: rotate(30deg);
+}
+
+/* Animação para elementos de tabela */
+.advanced-table tr {
+    transition: background-color 0.2s ease-in-out;
+}
+
+/* Animação para elementos de filtro */
+.filter-tag {
+    animation: fadeIn 0.3s ease-in-out;
+}
+
+.filter-tag-remove:hover {
+    transform: rotate(90deg);
+    transition: transform 0.2s ease-in-out;
+}
+
+/* Animação para elementos de editor de regras */
+.rules-editor-container {
+    animation: fadeIn 0.5s ease-in-out;
+}
+
+.column-mapping-item,
+.cst-rule-item {
+    animation: slideInUp 0.3s ease-out;
+}
+
+/* Animação para notificações */
+.notification {
+    animation: slideInRight 0.3s ease-out;
+}
+
+/* Animação para o botão de upload quando um arquivo é selecionado */
+.file-selected .file-upload-label {
+    animation: pulse 0.5s ease-in-out;
+}
+
+/* Animação para erros de validação */
+.validation-error {
+    animation: shake 0.5s ease-in-out;
+}
+
+/* Animação para sucesso de validação */
+.validation-success {
+    animation: pulse 0.5s ease-in-out;
+}
